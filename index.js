@@ -17,13 +17,16 @@ Gtk.init()
 
 // Main program window
 const window = new Gtk.Window({
-  type : Gtk.WindowType.TOPLEVEL
+  type : Gtk.WindowType.TOPLEVEL,
+  title : "relyplayer"
 })
 
 // WebKit2 browser wrapper
 const webView = new WebKit2.WebView()
 
-
+const button = {
+    forward: Gtk.ToolButton.newFromStock(Gtk.STOCK_GO_FORWARD),
+  }
 
 // the browser container, so that it is scrollable
 const scrollWindow = new Gtk.ScrolledWindow({})
@@ -39,9 +42,9 @@ const vbox = new Gtk.Box({ orientation: Gtk.Orientation.VERTICAL })
 
 scrollWindow.add(webView)
 
-
+hbox.packStart(button.forward, false, false, 0)
 vbox.packStart(hbox,         false, true, 0)
-vbox.packStart(scrollWindow, true,  true, 0)
+
 
 // configure main window
 window.setDefaultSize(1024, 720)
@@ -93,17 +96,20 @@ window.on('destroy', () => Gtk.mainQuit())
 // in this case, it would prevent the user from closing the window if we would return `true`
 window.on('delete-event', () => false)
 
-
+button.forward.on('clicked', load)
 
 /*
  * Main
  */
 
 main()
-
+function load() {
+    webView.loadUri(url(process.argv[2] || 'youtube.com'));
+    vbox.packStart(scrollWindow, true,  true, 0);
+    window.showAll()
+}
 function main() {
   // open first argument or Google
-  webView.loadUri(url(process.argv[2] || 'google.com'))
 
   // add vertical ui and show them all
   window.showAll()
