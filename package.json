@@ -1,0 +1,22 @@
+{
+  "name": "relyplayer",
+  "version": "1.0.0",
+  "description": "Media Player.",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programmers-from-similar-interests/relyplayer.git"
+  },
+  "author": "PFSI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/programmers-from-similar-interests/relyplayer/issues"
+  },
+  "homepage": "https://github.com/programmers-from-similar-interests/relyplayer#readme",
+  "dependencies": {
+    "node-gtk": "^0.2.2"
+  }
+}
